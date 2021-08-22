@@ -30,10 +30,8 @@ function SideBar({score}) {
         const newNumber = appendDollarAcronym(number.toLocaleString())
         const numLength = number?.toString().length
 
-        if (numLength > 12) return `${newNumber}t`
-        if (numLength > 9)  return `${newNumber}b`
-        if (numLength > 6)  return `${newNumber}m`
-        if (numLength > 3)  return `${newNumber}k`
+        if (numLength > 6) return `${newNumber}m`
+        if (numLength > 3) return `${newNumber}k`
 
         return number
     }
