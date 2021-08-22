@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {memo} from "react";
+import {useAppData} from "./AppDataProvider"
+import Spinner from "./components/Spinner";
+import PostContainer from "./components/PostContainer"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = memo(() => {
+    const sortByDescendingComments = arr => {
+        return arr.data.children.sort((a, b) => b.data.num_comments - a.data.num_comments)
+    }
 
-export default App;
+    const {isLoading, error, data: posts} = useAppData()
+
+    if (isLoading) return <Spinner/>
+
+    if (error) return "An error has occurred: " + error.message
+
+    if (posts) {
+        const sortedPosts = sortByDescendingComments(posts)
+        return (
+            <div className="App">
+                <div className="content">
+                    <div>{sortedPosts.map(post =>
+                        <PostContainer key={post.data.id} post={post.data}/>
+                    )}</div>
+                </div>
+            </div>
+        )
+    }
+})
+
+export default App
+
