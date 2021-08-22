@@ -13,7 +13,8 @@ const Aside = styled.aside`
   background-color: #636e72;
 `
 
-const Score = styled.aside`
+const Score = styled.li`
+  list-style-type: none;
   color: #dfe6e9;
 
 `
