@@ -4,7 +4,7 @@ Reddit client app featuring top 20 posts from r/ProgrammerHumor
 
 ## Live Demo
 
-This project is hosted at: 
+This project is hosted at: https://last-laugh-f16a4.web.app/
 
 ## Getting Started
 
